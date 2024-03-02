@@ -1,0 +1,13 @@
+.my-red {
+  background-color: red;
+  position: relative;
+  height: 1rem;
+  width: 1rem;
+  top: 0;
+  right: -25px;
+  border-radius: 60%;
+}
+.my-small-text {
+  font-size: 0.7rem;
+  line-height: 1.5;
+}

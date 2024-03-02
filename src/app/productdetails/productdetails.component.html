@@ -1,0 +1,39 @@
+<div
+  class="alert alert-success position-fixed my-lert start-50"
+  role="alert"
+  *ngIf="productAdded"
+>
+  Product has been added to your Cart
+</div>
+<div class="row py-4 align-items-center">
+  <div class="col-md-4">
+    <owl-carousel-o [options]="customOptions">
+      <ng-container *ngFor="let img of productDetails?.images">
+        <ng-template carouselSlide>
+          <img class="w-100" [src]="img" alt="A product" />
+        </ng-template>
+      </ng-container>
+    </owl-carousel-o>
+  </div>
+  <div class="col-md-8">
+    <h2 class="h4 fw-bolder mb-2">{{ productDetails?.title }}</h2>
+    <p class="text-muted p-3">{{ productDetails?.description }}</p>
+    <div class="d-flex justify-content-between align-items-center">
+      <span class="text-muted fw-bold font-sm"
+        >{{ productDetails?.price }} EGP</span
+      >
+      <div>
+        <i class="rating-color fas fa-star"></i>
+        <span class="text-muted fw-bold font-sm"
+          >{{ productDetails?.ratingsAverage }}
+        </span>
+      </div>
+    </div>
+    <button
+      (click)="addToCard(productDetails._id)"
+      class="btn bg-main text-white w-100"
+    >
+      + Add
+    </button>
+  </div>
+</div>

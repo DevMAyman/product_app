@@ -1,0 +1,13 @@
+<owl-carousel-o [options]="customOptions">
+  <ng-container *ngFor="let category of productCategories">
+    <ng-template carouselSlide>
+      <img
+        height="200"
+        class="w-100 px-2"
+        [src]="category.image"
+        [alt]="category.name"
+      />
+      <h4 class="h6 fw-bolder">{{ category.name }}</h4>
+    </ng-template>
+  </ng-container>
+</owl-carousel-o>

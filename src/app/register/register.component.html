@@ -1,0 +1,161 @@
+<div class="w-75 mx-auto py-4">
+  <h4>Register Now:</h4>
+  <div *ngIf="apiError" class="alert alert-danger">
+    <p>{{ apiError }}</p>
+  </div>
+  <form [formGroup]="registerForm" (ngSubmit)="handleRedister(registerForm)">
+    <label for="name">name :</label>
+    <input
+      formControlName="name"
+      type="text"
+      class="form-control mb-2"
+      id="name"
+    />
+    <div
+      *ngIf="
+        registerForm.get('name')?.errors && registerForm.get('name')?.touched
+      "
+      class="alert alert-danger"
+    >
+      <p
+        *ngIf="registerForm.get('name')?.getError('minlength') | json"
+        class="m-0"
+      >
+        Name minLength is 3
+      </p>
+      <p
+        *ngIf="registerForm.get('name')?.getError('maxlength') | json"
+        class="m-0"
+      >
+        Name maxLength is 10
+      </p>
+      <p
+        *ngIf="registerForm.get('name')?.getError('required') | json"
+        class="m-0"
+      >
+        Name is required
+      </p>
+    </div>
+    <!--
+      *ngIf="
+        registerForm.get('name')?.errors && registerForm.get('name')?.touched
+      "
+      class="alert alertDiv text-white fw-bold my-3"
+    >
+      <p
+        *ngIf="registerForm.get('name')?.getError('minlength') | json"
+        class="m-0"
+      >
+        Name MinLength is 3
+      </p>
+      <p
+        *ngIf="registerForm.get('name')?.getError('maxlength') | json"
+        class="m-0"
+      >
+        Name MaxLength is 10
+      </p>
+      <p
+        *ngIf="registerForm.get('name')?.getError('required') | json"
+        class="m-0"
+      >
+        Name is Required
+      </p>
+    </div> -->
+    <label for="email">email :</label>
+    <input
+      type="email"
+      class="form-control mb-2"
+      id="email"
+      formControlName="email"
+    />
+    <div
+      *ngIf="
+        registerForm.get('email')?.errors && registerForm.get('email')?.touched
+      "
+      class="alert alert-danger"
+    >
+      <p *ngIf="registerForm.get('email')?.getError('email')" class="m-0">
+        Enter a Valid Email
+      </p>
+      <p *ngIf="registerForm.get('email')?.getError('required')" class="m-0">
+        Email is required
+      </p>
+    </div>
+    <label for="password">password :</label>
+    <input
+      type="password"
+      class="form-control mb-2"
+      id="password"
+      formControlName="password"
+    />
+    <div
+      *ngIf="
+        registerForm.get('password')?.errors &&
+        registerForm.get('password')?.touched
+      "
+      class="alert alert-danger"
+    >
+      <p *ngIf="registerForm.get('password')?.getError('pattern')" class="m-0">
+        Password must start with with UpperCase and from 3 to 10
+      </p>
+      <p *ngIf="registerForm.get('password')?.getError('required')" class="m-0">
+        Password is required
+      </p>
+    </div>
+    <label for="rePassword">repassword :</label>
+    <input
+      type="password"
+      class="form-control mb-2"
+      id="rePassword"
+      formControlName="rePassword"
+    />
+    <div
+      *ngIf="
+        registerForm.get('rePassword')?.errors &&
+        registerForm.get('rePassword')?.touched
+      "
+      class="alert alert-danger"
+    >
+      <p
+        *ngIf="registerForm.get('rePassword')?.getError('pattern')"
+        class="m-0"
+      >
+        Password must start with with UpperCase and from 3 to 10
+      </p>
+      <p
+        *ngIf="registerForm.get('rePassword')?.getError('required')"
+        class="m-0"
+      >
+        Password is required
+      </p>
+    </div>
+    <label for="phone">phone :</label>
+    <input
+      type="tel"
+      class="form-control mb-2"
+      id="phone"
+      formControlName="phone"
+    />
+    <div
+      *ngIf="
+        registerForm.get('phone')?.errors && registerForm.get('phone')?.touched
+      "
+      class="alert alert-danger"
+    >
+      <p *ngIf="registerForm.get('phone')?.getError('pattern')" class="m-0">
+        Enter a Valid Phone Number
+      </p>
+      <p *ngIf="registerForm.get('phone')?.getError('required')" class="m-0">
+        phone is required
+      </p>
+    </div>
+    <button
+      [disabled]="registerForm.invalid"
+      type="submit"
+      class="btn bg-main d-block ms-auto border-0 text-white"
+    >
+      <i *ngIf="isLoading" class="fas fa-spinner fa-spin"></i>
+      <span *ngIf="!isLoading">Register</span>
+    </button>
+  </form>
+</div>

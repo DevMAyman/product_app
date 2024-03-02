@@ -1,0 +1,44 @@
+<div class="row bg-main-light p-3 my-4">
+  <h3>Shop cart</h3>
+  <h6 class="text-main">Total price : {{ cartData?.totalCartPrice }} EGP</h6>
+</div>
+<div
+  *ngFor="let product of cartData?.products"
+  class="row border-bottom py-3 bg-main-light"
+>
+  <div class="col-md-1">
+    <img [src]="product?.product.imageCover" alt="" class="w-100" />
+  </div>
+  <div class="col-md-11 d-flex justify-content-between">
+    <div>
+      <h6>{{ product.product.title }}</h6>
+      <h6 class="text-main">{{ product.price }} EGP</h6>
+      <button class="btn btn-danger" (click)="removeCart(product.product._id)">
+        <i class="fas fa-trash-can"></i> Remove
+      </button>
+    </div>
+    <div>
+      <button
+        class="btn border-main btn-sm"
+        (click)="
+          updateCartProductQuantity(product?.product?._id, 2, product.count + 1)
+        "
+      >
+        +
+      </button>
+      <span class="mx-2">{{ product.count }}</span>
+      <button
+        class="btn border-main btn-sm"
+        (click)="
+          updateCartProductQuantity(
+            product?.product?._id,
+            product.count,
+            product.count - 1
+          )
+        "
+      >
+        -
+      </button>
+    </div>
+  </div>
+</div>

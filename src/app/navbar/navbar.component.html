@@ -1,0 +1,71 @@
+<nav class="navbar navbar-expand-sm navbar-light bg-light">
+  <div class="container">
+    <a class="navbar-brand" href="#">Navbar</a>
+    <button
+      class="navbar-toggler d-lg-none"
+      type="button"
+      data-bs-toggle="collapse"
+      data-bs-target="#collapsibleNavId"
+      aria-controls="collapsibleNavId"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
+    >
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="collapsibleNavId">
+      <ul class="navbar-nav me-auto mt-2 mt-lg-0">
+        <li *ngIf="isLogin" class="nav-item">
+          <a *ngIf="isLogin" class="nav-link" routerLink="home">Home</a>
+        </li>
+        <li *ngIf="isLogin" class="nav-item">
+          <a class="nav-link" routerLink="cart">Cart</a>
+        </li>
+
+        <li *ngIf="isLogin" class="nav-item">
+          <a class="nav-link" routerLink="product">Product</a>
+        </li>
+        <li *ngIf="isLogin" class="nav-item">
+          <a class="nav-link" routerLink="categories">Categories</a>
+        </li>
+        <li *ngIf="isLogin" class="nav-item">
+          <a class="nav-link" routerLink="brands">Brands</a>
+        </li>
+      </ul>
+      <ul class="navbar-nav ms-auto mt-2 mt-lg-0">
+        <li class="nav-item d-flex align-items-center">
+          <i class="fab fa-instagram mx-2"></i>
+          <i class="fab fa-facebook mx-2"></i>
+          <i class="fab fa-tiktok mx-2"></i>
+          <i class="fab fa-twitter mx-2"></i>
+          <i class="fab fa-linkedin mx-2"></i>
+          <i class="fab fa-youtube mx-2"></i>
+        </li>
+        <li *ngIf="isLogin" class="nav-item ms-1 me-5">
+          <a class="nav-link position-absolute" routerLink="cart"
+            ><i class="fas fa-cart-shopping"></i
+          ></a>
+          <div
+            *ngIf="cartData?.products.length > 0"
+            class="my-red d-flex justify-content-center align-content-center"
+          >
+            <p class="text-white text-center my-small-text m-0">
+              {{ cartData?.products.length }}
+            </p>
+          </div>
+        </li>
+        <li *ngIf="!isLogin" class="nav-item">
+          <a class="nav-link" routerLink="login">Login</a>
+        </li>
+        <li *ngIf="!isLogin" class="nav-item">
+          <a class="nav-link" routerLink="register">Register</a>
+        </li>
+        <li (click)="logOut()" *ngIf="isLogin" class="nav-item">
+          <span class="nav-link cursor-pointer">LogOut</span>
+        </li>
+        <li *ngIf="isLogin" class="nav-item">
+          <a class="nav-link cursor-pointer" routerLink="settings">Settings</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>

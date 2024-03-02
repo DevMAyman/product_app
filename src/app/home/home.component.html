@@ -1,0 +1,56 @@
+<div
+  class="alert alert-success position-fixed my-lert start-50"
+  role="alert"
+  *ngIf="productAdded"
+>
+  Product has been added to your Cart
+</div>
+<app-mainslider></app-mainslider>
+<app-categories></app-categories>
+<div class="row">
+  <div>
+    <input
+      type="text "
+      placeholder="Search by name"
+      class="form-control w-75 my-4 mx-auto"
+      [(ngModel)]="searchTerm"
+    />
+  </div>
+  <div *ngFor="let product of products | search : searchTerm" class="col-md-2">
+    <div class="product px-2 py-4">
+      <a [routerLink]="['/productdetails', product._id]">
+        <img src="{{ product.imageCover }}" class="w-100" alt="" />
+        <span class="text-main fw-bold font-sm">{{
+          product.category.name
+        }}</span>
+        <h3 class="h6 fw-bolder">
+          {{ product.title.split(" ").slice(0, 2).join(" ") }}
+        </h3>
+        <div class="d-flex justify-content-between align-items-center">
+          <span class="text-muted fw-bold font-sm"
+            >{{ product.price }} EGP</span
+          >
+          <div>
+            <i
+              *ngFor="let x of [1, 2, 3, 4, 5].slice(0, product.ratingsAverage)"
+              class="rating-color fas fa-star"
+            ></i>
+            <i
+              *ngIf="product.ratingsAverage | roundNum"
+              class="fas fa-star-half-stroke rating-color"
+            ></i>
+            <span class="text-muted fw-bold font-sm"
+              >{{ product.ratingsAverage }}
+            </span>
+          </div>
+        </div>
+      </a>
+      <button
+        (click)="addToCard(product._id)"
+        class="btn bg-main text-white w-100"
+      >
+        + Add
+      </button>
+    </div>
+  </div>
+</div>
